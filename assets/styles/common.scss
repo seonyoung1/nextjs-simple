@@ -1,0 +1,16 @@
+@charset "utf-8";
+@import "module/mixins";
+@import "module/variables";
+@import "reset";
+@import "slick";
+
+body{
+    background-color:lightskyblue;
+    div{
+        font-weight:bold;
+    }
+}
+
+header{
+    border-bottom:1px solid #000;
+}
