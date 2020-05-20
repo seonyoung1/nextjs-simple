@@ -28,3 +28,4 @@ yarn-error.log*
 .idea
 */node_modules
 */.next
+server/config/dev.js
