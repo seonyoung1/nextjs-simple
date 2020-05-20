@@ -1,15 +1,7 @@
 import React, { useCallback } from 'react';
-import { Router, Link, i18n } from '../../i18n'
+import Link from 'next/link';
 
-const Header = ({ locale }) => {
-	const changeLo = useCallback(() => {
-		// document.body.classList.remove(locale);
-		i18n.changeLanguage(i18n.language === 'en' ? 'kr' : 'en');
-		setTimeout(() => {
-			Router.push('/');
-		}, 100);
-	}, [locale]);
-
+const Header = ({ }) => {
 	return (
 		<header>
 			<nav>
@@ -22,9 +14,6 @@ const Header = ({ locale }) => {
 					</li>
 				</ul>
 			</nav>
-			<div className="locale">
-				<button onClick={changeLo}>{ locale === 'kr' ? 'en' : 'kr' }</button>
-			</div>
 		</header>
 	);
 };

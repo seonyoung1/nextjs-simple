@@ -12,7 +12,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import NProgress from 'nprogress';
 import reducer from '../store/reducers';
 import rootSaga from '../store/sagas';
-import { appWithTranslation, i18n } from '../i18n';
 import MyLayout from '../components/common/MyLayout';
 import '../assets/styles/common.scss';
 import '../assets/css/nprogress.css';
@@ -27,13 +26,13 @@ Router.events.on('routeChangeError', () => {
     NProgress.done();
 });
 
-const MyApp = ({ Component, pageProps, store, locale }) => {
+const MyApp = ({ Component, pageProps, store }) => {
     return (
         <Provider store={store}>
             <Head>
                 <title>Next.js</title>
             </Head>
-            <MyLayout locale={locale}>
+            <MyLayout>
                 <Component {...pageProps} />
             </MyLayout>
         </Provider>
@@ -46,11 +45,8 @@ MyApp.getInitialProps = async context => {
     if( Component.getInitialProps ){
         pageProps = await Component.getInitialProps(ctx);
     }
-    const locale = ctx.req ? ctx.req.language : i18n.language;
-    // console.log(locale);
     return {
-        pageProps,
-        locale
+        pageProps
     }
 }
 
@@ -63,4 +59,4 @@ const configureStore = ( initialState, options ) => {
     return store;
 }
 
-export default withRedux(configureStore)(withReduxSaga(appWithTranslation(MyApp)));
+export default withRedux(configureStore)(withReduxSaga(MyApp));

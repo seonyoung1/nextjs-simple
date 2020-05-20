@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './Header';
 
-const MyLayout = ({ children, locale }) => {
+const MyLayout = ({ children }) => {
 	return (
 		<div id="wrapper">
-			<Header locale={locale} />
+			<Header />
 			{children}
 		</div>
 	);
