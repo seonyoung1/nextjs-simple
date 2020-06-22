@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ACTION_PATH } from '../store/reducers/common';
-import { GET_MAIN_REQUEST } from '../store/reducers/main';
+import { ACTION_PATH } from '../modules/reducers/common';
+import { GET_MAIN_REQUEST } from '../modules/reducers/main';
 
 const Index = ({  }) => {
     const dispatch = useDispatch();
     const { pathname } = useSelector(state => state.common);
-    const { contents: { beyond } } = useSelector(state => state.main);
+    const { contents: { title } } = useSelector(state => state.main);
 
     useEffect(() => {
 
@@ -16,6 +16,7 @@ const Index = ({  }) => {
         <div>
             pathname:{pathname} <br />
             {/*<p dangerouslySetInnerHTML={{ __html: beyond.desc }}/>*/}
+            <p>{title}</p>
         </div>
     );
 };

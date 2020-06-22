@@ -4,7 +4,7 @@ export const GET_MAIN_FAILURE = 'GET_MAIN_FAILURE';
 
 const initialState = {
 	contents: {
-		beyond: null,
+		title: null,
 	},
 	isLoading: false,
 	error: null,

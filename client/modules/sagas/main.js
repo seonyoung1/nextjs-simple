@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GET_MAIN_REQUEST, GET_MAIN_SUCCESS, GET_MAIN_FAILURE } from '../reducers/main';
 
 function getMainApi() {
-	return axios.get(`http://jsonplaceholder.typicode.com/posts`);
+	return axios.get(`http://jsonplaceholder.typicode.com/posts/1`);
 }
 function* getMain(action) {
 	try {
@@ -11,7 +11,7 @@ function* getMain(action) {
 		yield put({
 			type: GET_MAIN_SUCCESS,
 			contents: {
-				beyond: response.beyond,
+				title: response.title,
 			}
 		})
 	} catch (e) {

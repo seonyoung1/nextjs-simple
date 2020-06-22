@@ -3,11 +3,16 @@ const app = express();
 const port = 5000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const config = require('./config/key');
 const { User } = require('./models/User');
 const { auth } = require('./middleware/auth');
 
+app.use(cors({
+	origin: true, // 요청 허락
+	credentials: true, // 쿠키를 받을 수 있도록 허락
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -22,6 +27,10 @@ mongoose.connect(config.mongoURI, {
 
 
 app.get('/', (req, res) => res.send('Hello World! 안녕'));
+
+app.get('/api/hello', (req, res) => {
+	res.send('안녕하세요');
+})
 
 // 회원가입
 app.post('/api/users/register', (req, res) => {
