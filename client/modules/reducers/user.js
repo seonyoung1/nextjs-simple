@@ -7,6 +7,9 @@ export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
+export const AUTH_REQUEST = 'AUTH_REQUEST';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILURE = 'AUTH_FAILURE';
 
 export const initialState = {
 	isLoggedIn: false, // 로그인 여부
@@ -17,6 +20,8 @@ export const initialState = {
 	isSigningUp: false, // 회원가입 시도중
 	signUpErrorReason: '', // 회원가입 실패 사유
 	myInfo: null, //내정보
+	info: null,
+	authErrorReason: '',
 }
 
 export default ( state = initialState, action) => {
@@ -79,6 +84,25 @@ export default ( state = initialState, action) => {
 				...state,
 				isSigningUp: false,
 				signUpErrorReason: action.error,
+			}
+		}
+		case AUTH_REQUEST: {
+			return{
+				...state,
+				authErrorReason: '',
+			}
+		}
+		case AUTH_SUCCESS: {
+			return{
+				...state,
+				info: action.data,
+			}
+		}
+		case AUTH_FAILURE: {
+			return{
+				...state,
+				authErrorReason: action.error,
+				info: null,
 			}
 		}
 		default: {

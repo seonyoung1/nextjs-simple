@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useInput } from '../hooks';
 import Link from 'next/link';
+import Router from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useInput } from '../hooks';
 import { LOG_IN_REQUEST } from '../modules/reducers/user';
 
 const Login = () => {
@@ -26,7 +27,8 @@ const Login = () => {
 
 	useEffect(() => {
 		if( isLoggedIn ){
-			return alert(`${myInfo.nickName}님 어서오세요!`);
+			alert(`${myInfo.nickName}님 어서오세요! 메인페이지로 이동합니다`);
+			Router.push('/');
 		}
 	}, [isLoggedIn])
 

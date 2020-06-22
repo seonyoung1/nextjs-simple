@@ -10,15 +10,12 @@ const Index = ({  }) => {
     const { contents: { title } } = useSelector(state => state.main);
 
     useEffect(() => {
-
-    }, []);
-    // useEffect(() => {
-    // 	axios.get('/hello').then(res => console.log(res.data));
-    // }, [])
+    	axios.get('/hello').then(res => console.log(res.data));
+    }, [])
 
     return (
         <div>
-            pathname:{pathname} <br />
+            {/*pathname:{pathname} <br />*/}
             {/*<p dangerouslySetInnerHTML={{ __html: beyond.desc }}/>*/}
             <p>{title}</p>
         </div>
