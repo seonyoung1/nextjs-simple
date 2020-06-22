@@ -16,7 +16,7 @@ export const initialState = {
 	isSignedUp: false, // 회원가입 성공
 	isSigningUp: false, // 회원가입 시도중
 	signUpErrorReason: '', // 회원가입 실패 사유
-	me: null, //내정보
+	myInfo: null, //내정보
 }
 
 export default ( state = initialState, action) => {
@@ -33,7 +33,7 @@ export default ( state = initialState, action) => {
 				...state,
 				isLoggingIn: false,
 				isLoggedIn: true,
-				me: action.data,
+				myInfo: action.data,
 			}
 		}
 		case LOG_IN_FAILURE: {
@@ -42,7 +42,7 @@ export default ( state = initialState, action) => {
 				isLoggingIn: false,
 				isLoggedIn: false,
 				logInErrorReason: action.error,
-				me: null,
+				myInfo: null,
 			}
 		}
 		case LOG_OUT_REQUEST: {
@@ -56,7 +56,7 @@ export default ( state = initialState, action) => {
 				...state,
 				isLoggedOut: false,
 				isLoggedIn: false,
-				me: null,
+				myInfo: null,
 			}
 		}
 		case SIGN_UP_REQUEST: {

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import axios from 'axios';
-import Link from 'next/link';
 import { useInput } from '../hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { SIGN_UP_REQUEST } from '../modules/reducers/user';
 
 const SignUp = () => {
 	const [email, onChangeEmail] = useInput('');
@@ -11,6 +11,8 @@ const SignUp = () => {
 	const [term, setTerm] = useState(false);
 	const [termError, setTermError] = useState(false);
 	const [passwordError, setPasswordError] = useState(false);
+	const dispatch = useDispatch();
+	const { isSigningUp, isSignedUp } = useSelector(state => state.user);
 
 	const onSubmit = useCallback(e => {
 		e.preventDefault();
@@ -23,7 +25,15 @@ const SignUp = () => {
 		if( !email || !name || !password ){
 			return alert('필수정보를 입력해주세요');
 		}
-		alert(`${email}님 안녕하세요!`)
+		// alert(`${email}님 안녕하세요!`)
+		dispatch({
+			type: SIGN_UP_REQUEST,
+			data: {
+				email,
+				name,
+				password
+			}
+		})
 	}, [email, password, passwordCheck, term]);
 
 	const onChangeTerm = useCallback(e => {
@@ -36,9 +46,12 @@ const SignUp = () => {
 		setPasswordCheck(e.target.value);
 	}, [password]);
 
-	// useEffect(() => {
-	// 	axios.get('/hello').then(res => console.log(res.data));
-	// }, [])
+	useEffect(() => {
+		if( isSignedUp ){
+			return alert(`회원가입 성공`);
+		}
+	}, [isSignedUp])
+
 	return (
 		<div className="signup">
 			<h2>회원가입</h2>
@@ -68,7 +81,7 @@ const SignUp = () => {
 					{termError && <p>동의해 주세요</p>}
 				</div>
 				<div className="button_group">
-					<button type="submit">회원가입</button>
+					<button type="submit">{isSigningUp? '회원가입 중..' : '회원가입'}</button>
 				</div>
 			</form>
 		</div>

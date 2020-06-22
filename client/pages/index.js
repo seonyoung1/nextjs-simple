@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACTION_PATH } from '../modules/reducers/common';
 import { GET_MAIN_REQUEST } from '../modules/reducers/main';
@@ -11,6 +12,9 @@ const Index = ({  }) => {
     useEffect(() => {
 
     }, []);
+    // useEffect(() => {
+    // 	axios.get('/hello').then(res => console.log(res.data));
+    // }, [])
 
     return (
         <div>

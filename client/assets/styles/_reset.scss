@@ -30,12 +30,6 @@ body {
     color:#000;
 	font-family: 'NanumBarunGothic', sans-serif;
     font-size:15px;
-    @media (max-width : 1024px) {
-        font-size:13px;
-    }
-    @media (max-width : 768px) {
-        @include vw-font-size-mo(12);
-    }
 }
 
 nav ul {

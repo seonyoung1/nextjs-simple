@@ -1,18 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useInput } from '../hooks';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOG_IN_REQUEST } from '../modules/reducers/user';
 
 const Login = () => {
 	const [email, onChangeEmail] = useInput('');
 	const [password, onChangePassword] = useInput('');
+	const dispatch = useDispatch();
+	const { isLoggingIn, isLoggedIn, myInfo } = useSelector(state => state.user);
 
 	const onSubmit = useCallback((e) => {
 		e.preventDefault();
 		if( !email || !password ){
 			return alert('정보를 입력해주세요');
 		}
-		alert(`${email}님 안녕하세요!`)
+		dispatch({
+			type: LOG_IN_REQUEST,
+			data: {
+				email,
+				password
+			}
+		});
 	}, [email, password]);
+
+	useEffect(() => {
+		if( isLoggedIn ){
+			return alert(`${myInfo.nickName}님 어서오세요!`);
+		}
+	}, [isLoggedIn])
 
 	return (
 		<div className="login">
@@ -27,8 +43,8 @@ const Login = () => {
 					<input type="password" name="userPassword" id="userPassword" onChange={onChangePassword} value={password} />
 				</div>
 				<div className="button_group">
-					<button type="submit">로그인</button>
-					<Link href={`/signup`}>회원가입</Link>
+					<button type="submit">{isLoggingIn ? '로그인 중..' : '로그인'}</button>
+					<Link href={`/signup`}><a>회원가입</a></Link>
 				</div>
 			</form>
 		</div>
