@@ -14,3 +14,28 @@ body{
 header{
     border-bottom:1px solid #000;
 }
+
+form{
+    max-width:480px;width:100%;
+
+    .item{
+        width:100%;display:flex;margin-bottom:5px;
+        label{
+            width:120px;
+        }
+        input[type=text],
+        input[type=password]{
+            width:100%;border:1px solid #666;border-radius:2px;background-color:#fff;
+        }
+    }
+    .button_group{
+        display:flex;justify-content: center;align-items: center;padding-top:20px;
+        button{
+            padding:8px 15px;background-color:#fff;border-radius:6px;
+        }
+        a{
+            margin:0 5px;
+        }
+    }
+
+}
